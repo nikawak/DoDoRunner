@@ -28,7 +28,7 @@ namespace Assets
 
 
         private bool playerInSightRange ;
-        private bool IsWalking;
+        private bool IsWalking , isCatched;
         
 
         private void Awake()
@@ -44,21 +44,23 @@ namespace Assets
 
             if (!playerInSightRange) Patroling();
             if (playerInSightRange) ChasePlayer();
-
-            Debug.Log(transform.position);
         }
 
         private void Patroling()
         {
-            if (!walkPointSet) SearchWalkPoint();
+            isCatched = false;
 
+            if (!walkPointSet) SearchWalkPoint();
             if (walkPointSet) agent.SetDestination(walkPoint);
 
             Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
             //Walkpoint reached
-            if (distanceToWalkPoint.magnitude < 1f)
-                walkPointSet = false;
+            if (distanceToWalkPoint.magnitude < 1f) walkPointSet = false;
+
+            
+
+
         }
         private void SearchWalkPoint()
         {
@@ -74,6 +76,29 @@ namespace Assets
                 walkPointSet = true;
         }
 
+        private IEnumerator FoundPerson()
+        {
+            var catched = Physics.CheckSphere(transform.position, 0.5f, playerLayer);
+
+
+            if (catched && !isCatched)
+            {
+                agent.SetDestination(transform.position);
+
+                Debug.Log(isCatched);
+                isCatched = true;
+                yield return new WaitForSeconds(5);
+                isCatched = false;
+
+            }
+            else
+            {
+                agent.SetDestination(player.position);
+            }
+
+
+        }
+
         private IEnumerable Walking()
         {
             yield return new WaitForSeconds(5);
@@ -81,10 +106,12 @@ namespace Assets
 
         private void ChasePlayer()
         {
-            Debug.Log("ChasePlayer");
 
             transform.LookAt(player.position);
             agent.SetDestination(player.position);
+
+            StartCoroutine(FoundPerson());
+            
         }
 
        
