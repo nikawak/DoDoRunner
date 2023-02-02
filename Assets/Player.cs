@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -10,6 +11,8 @@ public class Player : MonoBehaviour
     [SerializeField] private Camera _camera;
     
     private CharacterController _controller;
+
+    public event Action PlayerDied;
 
     private static float _gravity = 9.81f;
 
@@ -53,5 +56,16 @@ public class Player : MonoBehaviour
         var direction = transform.position - _camera.transform.position;
         var rotation = Quaternion.LookRotation(direction);
         _camera.transform.rotation = Quaternion.Lerp(_camera.transform.rotation, rotation, Time.deltaTime * 2);
+    }
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.collider.CompareTag("Egg")) 
+        {
+            Destroy(hit.gameObject); 
+        }
+        else if (hit.collider.CompareTag("Enemy"))
+        {
+            PlayerDied();
+        }
     }
 }

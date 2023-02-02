@@ -9,13 +9,8 @@ public class Egg : MonoBehaviour
     {
         _scoreCounter = FindObjectOfType<ScoreCounter>();
     }
-
-    private void OnCollisionEnter(Collision collision)
+    private void OnDestroy()
     {
-        if (collision.collider.CompareTag("Player"))
-        {
-            _scoreCounter.AddEgg();
-            Destroy(this.gameObject);
-        }
+        _scoreCounter.AddEgg();
     }
 }
