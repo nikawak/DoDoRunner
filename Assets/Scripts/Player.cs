@@ -9,7 +9,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float _floatRatio = 5f;
     [SerializeField] Vector3 _cameraOffset = new Vector3(0, 1f, -6f);
     [SerializeField] private Camera _camera;
-    
+
+    private event Action PlayerDied;
     private CharacterController _controller;
     private static float _gravity = 9.81f;
 
@@ -45,14 +46,14 @@ public class Player : MonoBehaviour
 
         //while(x <= 0.5f && z <= 0.5f) _animator.SetTrigger("Idle");
 
-        Debug.Log(z + " - z ," + x + " - x");
-        if (x != 0 || z != 0)
-        {
-            if (x >= 0.0002f || z >= 0.0002f)
-                _animator.SetTrigger("Running");
+        //Debug.Log(z + " - z ," + x + " - x");
+        //if (x != 0 || z != 0)
+        //{
+        //    if (x >= 0.0002f || z >= 0.0002f)
+        //        _animator.SetTrigger("Running");
 
-            else _animator.SetTrigger("Stop");
-        }
+        //    else _animator.SetTrigger("Stop");
+        //}
         //else
         //{
         //    _animator.SetTrigger("Idle");
