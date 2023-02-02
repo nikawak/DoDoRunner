@@ -10,7 +10,8 @@ public class Player : MonoBehaviour
     [SerializeField] Vector3 _cameraOffset = new Vector3(0, 1f, -6f);
     [SerializeField] private Camera _camera;
 
-    private event Action PlayerDied;
+    public event Action PlayerDied;
+
     private CharacterController _controller;
     private static float _gravity = 9.81f;
 
