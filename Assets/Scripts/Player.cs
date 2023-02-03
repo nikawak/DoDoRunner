@@ -4,18 +4,18 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float _speed = 10f;
-    [SerializeField] private float _rotateSpeed = 3f;
-    [SerializeField] private float _floatRatio = 5f;
-    [SerializeField] Vector3 _cameraOffset = new Vector3(0, 1f, -6f);
-    [SerializeField] private Camera _camera;
+    [SerializeField] protected float _speed = 10f;
+    [SerializeField] protected float _rotateSpeed = 3f;
+    [SerializeField] protected float _floatRatio = 5f;
+    [SerializeField] protected Vector3 _cameraOffset = new Vector3(0, 1f, -6f);
+    [SerializeField] protected Camera _camera;
 
     public event Action PlayerDied;
 
-    private CharacterController _controller;
-    private static float _gravity = 9.81f;
+    protected CharacterController _controller;
+    protected static float _gravity = 9.81f;
 
-    private Animator _animator;
+    protected Animator _animator;
 
     void Start()
     {
@@ -28,14 +28,14 @@ public class Player : MonoBehaviour
         Rotate();
         FloatInTheAir();
     }
-    public void FloatInTheAir()
+    protected void FloatInTheAir()
     {
         if (!_controller.isGrounded)
         {
             _controller.Move(-Vector3.up * Time.deltaTime * _gravity / _floatRatio);
         }
     }
-    public void Move()
+    protected virtual void Move()
     {
 
         var x = Input.GetAxis("Horizontal") * Time.deltaTime * _speed;
@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
 
 }
 
-    public void Rotate()
+    protected virtual void Rotate()
     {
         var yRot = Input.GetAxis("Mouse X") * _rotateSpeed;
         var isRot = yRot != 0;
@@ -77,7 +77,7 @@ public class Player : MonoBehaviour
         var rotation = Quaternion.LookRotation(direction);
         _camera.transform.rotation = Quaternion.Lerp(_camera.transform.rotation, rotation, Time.deltaTime * 2);
     }
-    private void OnControllerColliderHit(ControllerColliderHit hit)
+    protected void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if (hit.collider.CompareTag("Egg")) 
         {

@@ -11,8 +11,8 @@ public class ScoreCounter : MonoBehaviour
     [SerializeField] private Text _eggCountDisplay;
     [SerializeField] private Text _timeCountDisplay;
     private int _eggCount = 0;
-    private int _timeCount = 0;
-    public int Score => _eggCount + _timeCount / 10;
+    private float _timeCount = 0;
+    public int Score => _eggCount + Convert.ToInt32(_timeCount) / 10;
 
     private void Start()
     {
@@ -22,8 +22,8 @@ public class ScoreCounter : MonoBehaviour
 
     private void Update()
     {
-        _timeCount = Convert.ToInt32(Time.time);
-        _timeCountDisplay.text = _timeCount.ToString();
+        _timeCount += Time.deltaTime;
+        _timeCountDisplay.text = Convert.ToInt32(_timeCount).ToString();
     }
     private void SaveScore()
     {
