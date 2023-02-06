@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -7,6 +8,8 @@ public class Player : MonoBehaviour
     [SerializeField] protected float _speed = 10f;
     [SerializeField] protected float _rotateSpeed = 3f;
     [SerializeField] protected float _floatRatio = 5f;
+    [SerializeField] protected float _flyHeight = 5f;
+
     [SerializeField] protected Vector3 _cameraOffset = new Vector3(0, 1f, -6f);
     [SerializeField] protected Camera _camera;
 
@@ -76,6 +79,20 @@ public class Player : MonoBehaviour
         var direction = transform.position - _camera.transform.position;
         var rotation = Quaternion.LookRotation(direction);
         _camera.transform.rotation = Quaternion.Lerp(_camera.transform.rotation, rotation, Time.deltaTime * 2);
+    }
+
+    public virtual void Jump()
+    {
+        var jump = Input.GetAxis("Jump");
+        if (_controller.isGrounded && jump > 0)
+        {
+            StartCoroutine(fly());
+        }
+    }
+    private IEnumerator fly()
+    {
+        yield return null;
+        _controller.SimpleMove(Vector3.up);
     }
     protected void OnControllerColliderHit(ControllerColliderHit hit)
     {

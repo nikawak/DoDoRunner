@@ -37,4 +37,9 @@ public class MobilePlayer : Player
         var rotation = Quaternion.LookRotation(direction);
         _camera.transform.rotation = Quaternion.Lerp(_camera.transform.rotation, rotation, Time.deltaTime * 2);
     }
+
+    public override void Jump()
+    {
+        _controller.Move(Vector3.up * 10);
+    }
 }
