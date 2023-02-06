@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
     {
         if (!_controller.isGrounded)
         {
+           // _animator.SetTrigger("Soar");
             _controller.Move(-Vector3.up * Time.deltaTime * _gravity / _floatRatio);
         }
     }
@@ -48,20 +49,7 @@ public class Player : MonoBehaviour
 
         _controller.Move(moveVector);
 
-        //while(x <= 0.5f && z <= 0.5f) _animator.SetTrigger("Idle");
 
-        //Debug.Log(z + " - z ," + x + " - x");
-        //if (x != 0 || z != 0)
-        //{
-        //    if (x >= 0.0002f || z >= 0.0002f)
-        //        _animator.SetTrigger("Running");
-
-        //    else _animator.SetTrigger("Stop");
-        //}
-        //else
-        //{
-        //    _animator.SetTrigger("Idle");
-        //}
 
 }
 
