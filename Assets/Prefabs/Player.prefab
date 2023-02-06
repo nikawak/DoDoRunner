@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 8928034063405512109}
   - component: {fileID: 8928034063405512108}
   - component: {fileID: 8928034063405512107}
-  - component: {fileID: 8928034063405512111}
   - component: {fileID: 8928034063405512112}
+  - component: {fileID: -4131580890254831867}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -85,23 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8928034063405512111
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8928034063405512104}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41ce354d8ef6b6548b9f7d536ef5944a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 8
-  _rotateSpeed: 3
-  _floatRatio: 3
-  _cameraOffset: {x: 0, y: 1, z: -6}
-  _camera: {fileID: 0}
 --- !u!143 &8928034063405512112
 CharacterController:
   m_ObjectHideFlags: 0
@@ -120,3 +103,20 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-4131580890254831867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8928034063405512104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eae27d86112a01944899aca6b46bfc69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 13
+  _rotateSpeed: 3
+  _floatRatio: 3
+  _cameraOffset: {x: 0, y: 1, z: -6}
+  _camera: {fileID: 0}

@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 6889065366525405602}
   - component: {fileID: 7324729390796139074}
   - component: {fileID: 3338750078718615440}
-  - component: {fileID: 249471775344505108}
   - component: {fileID: 2106094608833834352}
   - component: {fileID: -5153919554689353885}
+  - component: {fileID: 233366698812383379}
   m_Layer: 0
   m_Name: egg
-  m_TagString: Untagged
+  m_TagString: Egg
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -86,19 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &249471775344505108
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6776142551172621705}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2106094608833834352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a850541cc4317c4d8d332e256fbbc4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scoreCounter: {fileID: 0}
+  _scoreCounter: {fileID: 4763952708895320574, guid: 56ebc792ca07b644f82dabbb1186fc1f, type: 3}
 --- !u!54 &-5153919554689353885
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -128,3 +115,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!136 &233366698812383379
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6776142551172621705}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1
+  m_Height: 1.345714
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.18, z: 0}
