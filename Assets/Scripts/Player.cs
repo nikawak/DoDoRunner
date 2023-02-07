@@ -30,12 +30,27 @@ public class Player : MonoBehaviour
         Move();
         Rotate();
         FloatInTheAir();
+        PlayAnimations();
     }
+
+    protected virtual void PlayAnimations()
+    {
+        if (!_controller.isGrounded)
+        {
+            _animator.SetBool("Soaring", true);
+            _animator.SetBool("Running", false);
+        }
+        else
+        {
+            _animator.SetBool("Soaring", false);
+            _animator.SetBool("Running", true);
+        }
+    }
+
     protected void FloatInTheAir()
     {
         if (!_controller.isGrounded)
         {
-           // _animator.SetTrigger("Soar");
             _controller.Move(-Vector3.up * Time.deltaTime * _gravity / _floatRatio);
         }
     }
@@ -51,7 +66,7 @@ public class Player : MonoBehaviour
 
 
 
-}
+    }
 
     protected virtual void Rotate()
     {
@@ -90,7 +105,12 @@ public class Player : MonoBehaviour
         }
         else if (hit.collider.CompareTag("Enemy"))
         {
-            PlayerDied();
+            StartCoroutine(KillPlayer());
         }
+    }
+    private IEnumerator KillPlayer()
+    {
+        yield return new WaitForSeconds(3);
+        PlayerDied();
     }
 }
